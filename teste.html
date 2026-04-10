@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Agência Azul Viagens | Planejador de Viagem</title>
+    <style>
+        /* ESTILOS PRINCIPAIS - TONS AZUIS E TEOR AGÊNCIA DE VIAGEM */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #cfe6f0 0%, #aacddc 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2f3e;
+        }
+
+        /* Header com ondas e estilo agência */
+        header {
+            background: linear-gradient(135deg, #2c5782 0%, #1a3f60 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid #f3e3d0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "✈️ 🌊";
+            font-size: 80px;
+            position: absolute;
+            bottom: -20px;
+            right: 20px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        h2 {
+            color: #1e4663;
+            font-weight: 600;
+            border-left: 5px solid #f3c26b;
+            padding-left: 15px;
+            margin-bottom: 1.8rem;
+            font-size: 1.7rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 28px;
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+            border: 2px solid #f3c26b;
+            background: white;
+        }
+
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.03);
+        }
+
+        .card-body h5 {
+            color: #1e4663;
+            font-weight: 700;
+        }
+
+        /* Formulários e elementos */
+        .form-select, .form-control {
+            border-radius: 40px;
+            border: 1px solid #cbdbe2;
+            padding: 12px 20px;
+            background-color: #fefef7;
+            transition: 0.2s;
+        }
+
+        .form-select:focus, .form-control:focus {
+            border-color: #2c5782;
+            box-shadow: 0 0 0 0.2rem rgba(44,87,130,0.25);
+        }
+
+        .form-check-input:checked {
+            background-color: #2c5782;
+            border-color: #2c5782;
+        }
+
+        .btn-primary {
+            background: linear-gradient(95deg, #2c5782, #1f486e);
+            border: none;
+            padding: 12px 40px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(95deg, #1f486e, #123a58);
+            transform: scale(1.02);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+
+        /* imagem do transporte */
+        #imagemSelect {
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            max-height: 600px;
+            object-fit: cover;
+            background: #eef4f8;
+            padding: 6px;
+        }
+
+        footer {
+            background: #1a3f60;
+            color: #cfe6f0;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+
+        /* responsividade */
+        @media (max-width: 768px) {
+            h2 { font-size: 1.4rem; }
+            .card { margin-bottom: 20px; }
+        }
+
+        .badge-custom {
+            background-color: #1e4663;
+            color: #f3e3d0;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><i class="fas fa-map-marked-alt me-2"></i>Agência Gusmao Viagens</h1>
+    <p>Planeje a jornada dos seus sonhos com estilo e conforto</p>
+</header>
+
+<main class="container mt-4 mb-5">
+    <div class="text-center mb-4">
+        <span class="badge-custom"><i class="fas fa-globe-americas me-1"></i> Destinos personalizados</span>
+        <span class="badge-custom ms-2"><i class="fas fa-umbrella-beach"></i> Pacotes exclusivos</span>
+    </div>
+
+    <section class="text-center mb-4">
+        <h2 class="border-0 text-center" style="border-left: none !important;">✈️ Monte sua viagem ideal! 😄</h2>
+        <p class="lead">Escolha cada detalhe e nossa equipe cria um roteiro sob medida</p>
+    </section>
+
+    <form id="formViagem">
+        <!-- TIPO DE VIAGEM (cards originais) -->
+        <section class="mb-5">
+            <h2><i class="fas fa-suitcase-rolling me-2"></i> Qual o tipo da sua viagem?</h2>
+            <div class="d-flex flex-wrap gap-4 justify-content-center">
+                <!-- Aventura -->
+                <div class="card" style="width: 18rem;">
+                    <img src="img/aventura.jpg" class="card-img-top" alt="aventura">
+                    <div class="card-body text-center">
+                        <h5><i class="fas fa-hiking me-1"></i> Aventura</h5>
+                        <p>Trilhas, esportes radicais e adrenalina pura.</p>
+                    </div>
+                </div>
+                <!-- Aprendizado -->
+                <div class="card" style="width: 18rem;">
+                    <img src="img/aprendizado.jpeg" class="card-img-top" alt="aprendizado">
+                    <div class="card-body text-center">
+                        <h5><i class="fas fa-landmark me-1"></i> Aprendizado</h5>
+                        <p>Museus, cultura e experiências educativas.</p>
+                    </div>
+                </div>
+                <!-- Gastronomia -->
+                <div class="card" style="width: 18rem;">
+                    <img src="img/gastronomia.jpg" class="card-img-top" alt="gastronomia">
+                    <div class="card-body text-center">
+                        <h5><i class="fas fa-utensils me-1"></i> Gastronomia</h5>
+                        <p>Explore novos sabores e restaurantes.</p>
+                    </div>
+                </div>
+                <!-- Diversão Infantil -->
+                <div class="card" style="width: 18rem;">
+                    <img src="img/diversaoInfantil.jpeg" class="card-img-top" alt="diversão infantil">
+                    <div class="card-body text-center">
+                        <h5><i class="fas fa-child me-1"></i> Diversão Infantil</h5>
+                        <p>Parques e atividades para crianças. 😍​🤠​🥳​</p>
+                    </div>
+                </div>
+            </div>
+            <!-- campo escondido para capturar tipo selecionado -->
+            <input type="hidden" id="tipoViagemSelecionado" value="Aventura">
+        </section>
+
+        <!-- TRANSPORTE: com imagem interativa -->
+        <section class="mb-5">
+            <h2><i class="fas fa-bus-alt me-2"></i> Como você quer ir?</h2>
+            <select class="form-select mb-3" id="transporte">
+                <option selected disabled>Escolha uma opção</option>
+                <option value="carro">Meio próprio (carro)</option>
+                <option value="onibus">Ônibus / Excursão</option>
+                <option value="aviao">Avião</option>
+            </select>
+            <div class="text-center">
+                <img id="imagemSelect" width="500" class="img-fluid" src="https://i.pinimg.com/474x/95/90/2e/95902e4c42faaf0753a5fe83c3b432a0.jpg" style="max-width: 90%;">
+            </div>
+        </section>
+
+        <!-- HOSPEDAGEM (radio) -->
+        <section class="mb-5">
+            <h2><i class="fas fa-bed me-2"></i> Onde prefere se hospedar?</h2>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="hospedagem" id="hospProprio" value="Lugar próprio">
+                <label class="form-check-label" for="hospProprio">🏠 Lugar próprio (casa de familiar / próprio)</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="hospedagem" id="hospHotel" value="Hotel">
+                <label class="form-check-label" for="hospHotel">🏨 Hotel / Resort</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="hospedagem" id="hospAirbnb" value="Airbnb / Chalé / Casa">
+                <label class="form-check-label" for="hospAirbnb">🏡 Airbnb / Chalé / Casa inteira</label>
+            </div>
+        </section>
+
+        <!-- DIAS -->
+        <section class="mb-5">
+            <h2><i class="far fa-calendar-alt me-2"></i> Quantos dias deseja ficar?</h2>
+            <input type="number" class="form-control" id="diasViagem" placeholder="Ex: 2" min="1" value="3">
+        </section>
+
+        <!-- ORÇAMENTO -->
+        <section class="mb-5">
+            <h2><i class="fas fa-coins me-2"></i> Quanto pretende gastar? (R$)</h2>
+            <input type="number" class="form-control" id="orcamentoViagem" placeholder="Ex: 5000" value="3500">
+        </section>
+
+        <!-- Botão planejar viagem -->
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-primary" id="planejarBtn"><i class="fas fa-plane-departure me-2"></i> Planejar viagem</button>
+        </div>
+    </form>
+
+    <!-- Modal de resultado (simulação agência) -->
+    <div class="modal fade" id="resumoModal" tabindex="-1" aria-labelledby="resumoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 32px;">
+                <div class="modal-header bg-primary text-white" style="background: #1e4663 !important; border-radius: 32px 32px 0 0;">
+                    <h5 class="modal-title" id="resumoModalLabel"><i class="fas fa-check-circle me-2"></i>Plano de Viagem Personalizado</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalCorpoResumo">
+                    <!-- conteúdo dinâmico -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="simularEnviar">📩 Enviar orçamento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <i class="fas fa-map-pin me-1"></i> Agência Azul Viagens | Seu roteiro com expertise e cuidado | 🌍 Destinos incríveis
+</footer>
+
+<!-- Scripts Bootstrap + lógica completa -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Gerenciamento da imagem do transporte
+    let selectTransporte = document.querySelector('#transporte');
+    let imgTransporte = document.querySelector('#imagemSelect');
+
+    function atualizarImagemTransporte() {
+        let valor = selectTransporte.value;
+        if (valor === "carro") {
+            imgTransporte.src = "https://aem-all.accor.com/content/dam/all/hubs/americas/latam/generic-images/all-magazine/viagem-de-carro-guia-completo-com-dicas-e-roteiros-2024-1.jpg";
+        } else if (valor === "onibus") {
+            imgTransporte.src = "https://blog.viajeguanabara.com.br/wp-content/uploads/2023/10/Vantagens-de-viajar-de-onibus-1250x480.png";
+        } else if (valor === "aviao") {
+            imgTransporte.src = "https://palacepraia.com.br/wp-content/uploads/2021/10/viajar-de-aviao.jpeg";
+        } else {
+            imgTransporte.src = "img/osBigTree.png";
+        }
+    }
+    selectTransporte.addEventListener('change', atualizarImagemTransporte);
+    atualizarImagemTransporte();
+
+    // Capturar tipo de viagem através de clique nos cards
+    const cardsViagem = document.querySelectorAll('.card');
+    const tipoHidden = document.getElementById('tipoViagemSelecionado');
+    cardsViagem.forEach(card => {
+        card.addEventListener('click', () => {
+            let tituloCard = card.querySelector('.card-body h5')?.innerText || "Aventura";
+            if (tituloCard.includes("Aventura")) tipoHidden.value = "Aventura";
+            else if (tituloCard.includes("Aprendizado")) tipoHidden.value = "Aprendizado";
+            else if (tituloCard.includes("Gastronomia")) tipoHidden.value = "Gastronomia";
+            else if (tituloCard.includes("Diversão Infantil")) tipoHidden.value = "Diversão Infantil";
+            // feedback visual
+            cardsViagem.forEach(c => c.style.border = "2px solid transparent");
+            card.style.border = "2px solid #f3c26b";
+            card.style.backgroundColor = "#fff9ef";
+        });
+        // ativar primeiro por padrão
+        if(card.querySelector('.card-body h5')?.innerText.includes("Aventura")) {
+            card.style.border = "2px solid #f3c26b";
+        }
+    });
+
+    // Planejamento - botão principal mostra modal com resumo dos dados
+    const planejarBtn = document.getElementById('planejarBtn');
+    const modalResumo = new bootstrap.Modal(document.getElementById('resumoModal'));
+    const modalBody = document.getElementById('modalCorpoResumo');
+
+    function coletarDadosFormulario() {
+        // Tipo viagem
+        let tipoViagem = tipoHidden.value;
+
+        // Transporte
+        let transporteSelect = selectTransporte.options[selectTransporte.selectedIndex]?.text || "Não informado";
+
+        // Hospedagem
+        let hospedagemSelecionada = "";
+        const hospRadios = document.querySelectorAll('input[name="hospedagem"]');
+        for(let radio of hospRadios) {
+            if(radio.checked) {
+                hospedagemSelecionada = radio.value;
+                break;
+            }
+        }
+        if(!hospedagemSelecionada) hospedagemSelecionada = "Nenhuma opção selecionada";
+
+        let dias = document.getElementById('diasViagem').value;
+        let orcamento = document.getElementById('orcamentoViagem').value;
+
+        return { tipoViagem, transporteSelect, hospedagemSelecionada, dias, orcamento };
+    }
+
+    planejarBtn.addEventListener('click', () => {
+        const dados = coletarDadosFormulario();
+        modalBody.innerHTML = `
+            <div class="row">
+                <div class="col-12 mb-3"><strong><i class="fas fa-map-marked-alt"></i> Tipo de viagem:</strong> ${dados.tipoViagem}</div>
+                <div class="col-12 mb-3"><strong><i class="fas fa-car"></i> Transporte:</strong> ${dados.transporteSelect}</div>
+                <div class="col-12 mb-3"><strong><i class="fas fa-hotel"></i> Hospedagem:</strong> ${dados.hospedagemSelecionada}</div>
+                <div class="col-12 mb-3"><strong><i class="far fa-calendar"></i> Dias:</strong> ${dados.dias} dias</div>
+                <div class="col-12 mb-3"><strong><i class="fas fa-dollar-sign"></i> Orçamento:</strong> R$ ${Number(dados.orcamento).toLocaleString('pt-BR')}</div>
+            </div>
+            <div class="alert alert-success mt-3"><i class="fas fa-smile-wink"></i> Nossa equipe preparará um roteiro exclusivo com base nas suas escolhas!</div>
+        `;
+        modalResumo.show();
+    });
+
+    // botão simular envio (dentro do modal)
+    document.getElementById('simularEnviar')?.addEventListener('click', () => {
+        alert("📧 Orçamento solicitado! Em breve um consultor da Agência Azul Viagens entrará em contato com ofertas personalizadas.");
+        modalResumo.hide();
+    });
+
+    // garantir valores padrões hospedagem (primeiro radio marcado para evitar dados vazios)
+    if(!document.querySelector('input[name="hospedagem"]:checked')) {
+        document.getElementById('hospProprio').checked = true;
+    }
+</script>
+</body>
+</html>
