@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome (ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Agência Azul Viagens | Planejador de Viagem</title>
+    <title>PlanejaTrip | Planejador de Viagem</title>
     <style>
         /* ESTILOS PRINCIPAIS - TONS AZUIS E TEOR AGÊNCIA DE VIAGEM */
         * {
@@ -172,9 +172,16 @@
 </head>
 <body>
 
-<header>
-    <h1><i class="fas fa-map-marked-alt me-2"></i>Agência Gusmao Viagens</h1>
-    <p>Planeje a jornada dos seus sonhos com estilo e conforto</p>
+<header class="d-flex col justify-content-center">
+    <section class="col-1">
+        <img src="img/logo_transparente.png" alt="" width="130px">
+
+    </section>
+    <section>
+
+        <h1>PlanejaTrip</h1>
+        <p><b>Planeje a jornada dos seus sonhos com estilo e conforto</b></p>
+    </section>
 </header>
 
 <main class="container mt-4 mb-5">
@@ -184,7 +191,7 @@
     </div>
 
     <section class="text-center mb-4">
-        <h2 class="border-0 text-center" style="border-left: none !important;">✈️ Monte sua viagem ideal! 😄</h2>
+        <h2 class="border-0 text-center" style="border-left: none !important;">✈️ Monte sua viagem ideal! </h2>
         <p class="lead">Escolha cada detalhe e nossa equipe cria um roteiro sob medida</p>
     </section>
 
@@ -222,7 +229,7 @@
                     <img src="img/diversaoInfantil.jpeg" class="card-img-top" alt="diversão infantil">
                     <div class="card-body text-center">
                         <h5><i class="fas fa-child me-1"></i> Diversão Infantil</h5>
-                        <p>Parques e atividades para crianças. 😍​🤠​🥳​</p>
+                        <p>Parques e atividades para crianças. ​</p>
                     </div>
                 </div>
             </div>
@@ -392,7 +399,7 @@
 
     // botão simular envio (dentro do modal)
     document.getElementById('simularEnviar')?.addEventListener('click', () => {
-        alert("📧 Orçamento solicitado! Em breve um consultor da Agência Azul Viagens entrará em contato com ofertas personalizadas.");
+        alert("📧 Orçamento solicitado! Em breve um consultor da PlanejaTrip entrará em contato com ofertas personalizadas.");
         modalResumo.hide();
     });
 
